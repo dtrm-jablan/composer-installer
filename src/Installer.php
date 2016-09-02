@@ -23,7 +23,7 @@ class Installer extends LibraryInstaller
     /**
      * @var string The path where modules reside
      */
-    const MODULE_APP_PATH = 'apps';
+    const MODULE_APP_PATH = '../apps';
     /**
      * @var string The prefix of the Determine tenant type
      */
@@ -35,7 +35,7 @@ class Installer extends LibraryInstaller
     /**
      * @var string The path where tenants reside
      */
-    const MODULE_TENANT_PATH = 'appli';
+    const MODULE_TENANT_PATH = '../appli';
 
     //******************************************************************************
     //* Methods
@@ -51,11 +51,13 @@ class Installer extends LibraryInstaller
             case static::MODULE_APP_TYPE:
                 $_prefix = static::MODULE_APP_PREFIX;
                 $_pathPrefix = static::MODULE_APP_PATH;
+                $this->io->write('Determine module package installing to ', false);
                 break;
 
             case static::MODULE_TENANT_TYPE:
                 $_prefix = static::MODULE_TENANT_PREFIX;
                 $_pathPrefix = static::MODULE_TENANT_PATH;
+                $this->io->write('Determine tenant package installing to ', false);
                 break;
 
             default:
@@ -66,7 +68,10 @@ class Installer extends LibraryInstaller
             throw new \InvalidArgumentException('Unable to install package. The package name must start with "' . $_prefix . '"');
         }
 
-        return rtrim($_pathPrefix, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . str_replace($_prefix, null, $_packageName);
+        $_path = rtrim($_pathPrefix, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . str_replace($_prefix, null, $_packageName);
+        $this->io->write('"' . $_path . '"');
+
+        return $_path;
     }
 
     /** {@inheritDoc} */
