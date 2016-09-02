@@ -1,0 +1,31 @@
+{
+    "name":        "determine/composer-installer",
+    "description": "Custom Composer Installer",
+    "authors":     [
+        {
+            "name":  "Jerry Ablan",
+            "email": "jablan@determine.com"
+        }
+    ],
+    "keywords":    [
+        "composer",
+        "installer",
+        "determine"
+    ],
+    "license":     "MIT",
+    "type":        "composer-plugin",
+    "require":     {
+        "composer-plugin-api": "^1.0"
+    },
+    "require-dev": {
+        "composer/composer": "^1.2"
+    },
+    "autoload":    {
+        "psr-4": {
+            "Determine\\Library\\Composer\\Installer\\": "src/"
+        }
+    },
+    "extra":       {
+        "class": "Determine\\Library\\Composer\\Plugin"
+    }
+}
