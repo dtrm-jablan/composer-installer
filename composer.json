@@ -1,6 +1,6 @@
 {
     "name":        "determine/composer-installer",
-    "description": "Custom Composer Installer",
+    "description": "Composer Installer for Determine Modules and Tenants",
     "authors":     [
         {
             "name":  "Jerry Ablan",
@@ -26,6 +26,6 @@
         }
     },
     "extra":       {
-        "class": "Determine\\Library\\Composer\\Plugin"
+        "class": "Determine\\Library\\Composer\\Installer\\Plugin"
     }
 }
