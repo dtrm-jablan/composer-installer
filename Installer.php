@@ -1,4 +1,4 @@
-<?php namespace Determine\Library\Composer\Installer;
+<?php namespace Determine\Library\Utility\Composer;
 
 use Composer\Package\PackageInterface;
 use Composer\Installer\LibraryInstaller;

@@ -22,10 +22,12 @@
     },
     "autoload":    {
         "psr-4": {
-            "Determine\\Library\\Composer\\Installer\\": "src/"
+            "Determine\\Library\\Utility\\Composer\\": ""
         }
     },
     "extra":       {
-        "class": "Determine\\Library\\Composer\\Installer\\Plugin"
+        "class": [
+            "Determine\\Library\\Utility\\Composer\\Plugin"
+        ]
     }
 }
