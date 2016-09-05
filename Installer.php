@@ -44,20 +44,26 @@ class Installer extends LibraryInstaller
     /** {@inheritDoc} */
     public function getInstallPath(PackageInterface $package)
     {
+        static $_cache = null;
+
         $_prefix = null;
         $_packageName = $package->getPrettyName();
+
+        if (isset($_cache[$_packageName])) {
+            return $_cache[$_packageName];
+        }
 
         switch ($_type = $package->getType()) {
             case static::MODULE_APP_TYPE:
                 $_prefix = static::MODULE_APP_PREFIX;
                 $_pathPrefix = static::MODULE_APP_PATH;
-                $this->io->write('Determine module package installing to ', false);
+                //$this->io->write('Determine module package installing to ', false);
                 break;
 
             case static::MODULE_TENANT_TYPE:
                 $_prefix = static::MODULE_TENANT_PREFIX;
                 $_pathPrefix = static::MODULE_TENANT_PATH;
-                $this->io->write('Determine tenant package installing to ', false);
+                //$this->io->write('Determine tenant package installing to ', false);
                 break;
 
             default:
@@ -68,10 +74,10 @@ class Installer extends LibraryInstaller
             throw new \InvalidArgumentException('Unable to install package. The package name must start with "' . $_prefix . '"');
         }
 
-        $_path = rtrim($_pathPrefix, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . str_replace($_prefix, null, $_packageName);
-        $this->io->write('"' . $_path . '"');
+        //  Let the world know where we are!
+        $GLOBALS['__determine_vendor_dir'] = $this->vendorDir;
 
-        return $_path;
+        return $_cache[$_packageName] = rtrim($_pathPrefix, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . str_replace($_prefix, null, $_packageName);
     }
 
     /** {@inheritDoc} */
